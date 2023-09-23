@@ -20,10 +20,7 @@ export const LoggedInAccount: React.FC<Props> = ({ address, onLogout }) => {
     <Menu as="div" className="relative ml-3">
       <div>
         <Menu.Button className="relative flex rounded-md bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-          <AccountBox
-            userImg={""} //TODO: Default placeholder user image
-            userAddress={address}
-          />
+          <AccountBox userAddress={address} />
         </Menu.Button>
       </div>
       <Transition
