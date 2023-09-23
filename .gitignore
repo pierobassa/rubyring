@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+.next
+.trunk
+
 # production
 /build
 
