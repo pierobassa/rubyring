@@ -19,8 +19,6 @@ export const BiconomyLensProvider = ({
 }: BiconomyLensProviderProps) => {
   const { smartAccount, accountPrivateKey } = useAccountStore();
 
-  console.log({ smartAccount, accountPrivateKey });
-
   const biconomyBindings: IBindings | null = useMemo(() => {
     if (!smartAccount || !accountPrivateKey) return null;
 
