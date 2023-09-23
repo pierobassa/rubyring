@@ -8,6 +8,7 @@ import SocialLogin from "@biconomy/web3-auth";
 import { ethers } from "ethers";
 import { biconomyBundler } from "@/networking";
 import { config } from "@/config";
+import { ProfileOwnedByMe } from "@lens-protocol/react-web";
 
 interface AccountState {
   smartAccount?: BiconomySmartAccount;
@@ -16,8 +17,10 @@ interface AccountState {
   socialLoginSdk?: SocialLogin;
   provider?: ethers.providers.Web3Provider;
   socialAccountLoading: boolean;
+  lensAccount?: ProfileOwnedByMe;
   initializeSocialAccount: (sdk: SocialLogin) => Promise<void>;
   setSocialAccountLoading: (isAccountLoading: boolean) => void;
+  setLensAccount: (lensAccount: ProfileOwnedByMe) => void;
   clear: () => void;
 }
 
@@ -29,6 +32,7 @@ export const useAccountStore = create<AccountState>()(
     socialLoginSdk: undefined,
     provider: undefined,
     socialAccountLoading: false,
+    lensAccount: undefined,
     initializeSocialAccount: async (sdk: SocialLogin) => {
       if (!sdk.provider) return;
       set({ ...get(), socialAccountLoading: true });
@@ -68,6 +72,8 @@ export const useAccountStore = create<AccountState>()(
     },
     setSocialAccountLoading: (isLoading: boolean) =>
       set({ ...get(), socialAccountLoading: isLoading }),
+    setLensAccount: (lensAccount: ProfileOwnedByMe) =>
+      set({ ...get(), lensAccount }),
     clear: () =>
       set({
         ...get(),

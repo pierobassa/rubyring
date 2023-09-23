@@ -7,6 +7,7 @@ import { memo, useCallback, useEffect, useRef, useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 
+const localhostUrl = "http://127.0.0.1:3000/";
 const productionUrl = "https://rubyring-zeta.vercel.app";
 
 export const SocialLoginWrapper = memo(() => <SocialLoginContent />);
@@ -57,8 +58,8 @@ const SocialLoginContent = () => {
         setLoginLoading(true);
         const sdk = new SocialLogin();
 
-        const signature1 = await sdk.whitelistUrl(
-          "http://127.0.0.1:3000/" // TODO: It is important to make sure that you update the whitelist URL with your production url when you are ready to go live!
+        const localSignature = await sdk.whitelistUrl(
+          localhostUrl // TODO: It is important to make sure that you update the whitelist URL with your production url when you are ready to go live!
         );
 
         const productionSignature = await sdk.whitelistUrl(productionUrl);
@@ -67,7 +68,7 @@ const SocialLoginContent = () => {
           chainId: ethers.utils.hexValue(ChainId.POLYGON_MUMBAI).toString(),
           network: "testnet",
           whitelistUrls: {
-            "http://127.0.0.1:3000/": signature1,
+            [localhostUrl]: localSignature,
             [productionUrl]: productionSignature
           }
         });
