@@ -14,5 +14,5 @@ export const config = {
   networkId: ChainId.POLYGON_MUMBAI,
   bundlerUrl: `https://bundler.biconomy.io/api/v2/${ChainId.POLYGON_MUMBAI}/nJPK7B3ru.dd7f7861-190d-41bd-af80-6877f74b8f44`, // This is the bundler url for Polygon Mumbai network. (https://docs.biconomy.io/docs/Biconomy%20AA%20Stack/Bundler/initialization)
   rpcUrl: rpcUrl ?? "",
-  contractAddress: deployedContract ?? "",
+  contractAddress: deployedContract ?? ""
 };

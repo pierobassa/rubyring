@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import {
   BiconomySmartAccount,
-  BiconomySmartAccountConfig,
+  BiconomySmartAccountConfig
 } from "@biconomy/account";
 import SocialLogin from "@biconomy/web3-auth";
 import { ethers } from "ethers";
@@ -37,11 +37,11 @@ export const useAccountStore = create<AccountState>()(
       const biconomySmartAccountConfig: BiconomySmartAccountConfig = {
         signer: web3Provider.getSigner(),
         chainId: config.networkId,
-        bundler: biconomyBundler,
+        bundler: biconomyBundler
       };
 
       let biconomySmartAccount = new BiconomySmartAccount(
-        biconomySmartAccountConfig,
+        biconomySmartAccountConfig
       );
 
       biconomySmartAccount = await biconomySmartAccount.init();
@@ -49,8 +49,8 @@ export const useAccountStore = create<AccountState>()(
       console.log(
         "deployed: ",
         await biconomySmartAccount.isAccountDeployed(
-          await biconomySmartAccount.getSmartAccountAddress(),
-        ),
+          await biconomySmartAccount.getSmartAccountAddress()
+        )
       );
       const smartAccountAddress =
         await biconomySmartAccount.getSmartAccountAddress();
@@ -63,7 +63,7 @@ export const useAccountStore = create<AccountState>()(
         smartAccount: biconomySmartAccount,
         smartAccountAddress,
         accountPrivateKey: privateKey,
-        provider: web3Provider,
+        provider: web3Provider
       });
     },
     setSocialAccountLoading: (isLoading: boolean) =>
@@ -75,7 +75,7 @@ export const useAccountStore = create<AccountState>()(
         smartAccountAddress: undefined,
         accountPrivateKey: undefined,
         socialLoginSdk: undefined,
-        provider: undefined,
-      }),
-  })),
+        provider: undefined
+      })
+  }))
 );

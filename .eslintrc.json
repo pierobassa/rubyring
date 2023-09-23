@@ -1,7 +1,19 @@
 {
-  "extends": ["plugin:prettier/recommended","next/core-web-vitals"],
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error"
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "next/core-web-vitals",
+      "@typescript-eslint",
+      "prettier"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "no-console": 1,       // Means warning
+      "prettier/prettier": 2 // Means error
+    }
   }
-}

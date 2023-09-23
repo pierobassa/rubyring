@@ -16,7 +16,7 @@ export default function Home() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            height: "80vh",
+            height: "80vh"
           }}
         >
           {!socialAccountLoading && !smartAccountAddress && (

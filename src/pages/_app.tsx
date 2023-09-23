@@ -7,8 +7,8 @@ import type { AppProps } from "next/app";
 const Navbar = dynamic(
   () => import("../components/Navbar").then((res) => res.Navbar),
   {
-    ssr: false,
-  },
+    ssr: false
+  }
 );
 
 export default function App({ Component, pageProps }: AppProps) {

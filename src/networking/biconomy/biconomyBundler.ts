@@ -10,5 +10,5 @@ import { DEFAULT_ENTRYPOINT_ADDRESS } from "@biconomy/account";
 export const biconomyBundler: IBundler = new Bundler({
   bundlerUrl: config.bundlerUrl,
   chainId: config.networkId,
-  entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS,
+  entryPointAddress: DEFAULT_ENTRYPOINT_ADDRESS
 });

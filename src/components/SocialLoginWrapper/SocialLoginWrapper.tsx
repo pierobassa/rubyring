@@ -17,7 +17,7 @@ const SocialLoginContent = () => {
     socialLoginSdk,
     socialAccountLoading,
     initializeSocialAccount,
-    clear: clearAccount,
+    clear: clearAccount
   } = useAccountStore();
 
   const [isIntervalEnabled, setIsIntervalEnabled] = useState<boolean>(false);
@@ -46,7 +46,7 @@ const SocialLoginContent = () => {
         console.error("Error while iniitalizing wallet", e);
       }
     },
-    [initializeSocialAccount],
+    [initializeSocialAccount]
   );
 
   const handleLogin = useCallback(async () => {
@@ -56,15 +56,15 @@ const SocialLoginContent = () => {
         const sdk = new SocialLogin();
 
         const signature1 = await sdk.whitelistUrl(
-          "http://127.0.0.1:3000/", // TODO: It is important to make sure that you update the whitelist URL with your production url when you are ready to go live!
+          "http://127.0.0.1:3000/" // TODO: It is important to make sure that you update the whitelist URL with your production url when you are ready to go live!
         );
 
         await sdk.init({
           chainId: ethers.utils.hexValue(ChainId.POLYGON_MUMBAI).toString(),
           network: "testnet",
           whitelistUrls: {
-            "http://127.0.0.1:3000/": signature1,
-          },
+            "http://127.0.0.1:3000/": signature1
+          }
         });
         sdkRef.current = sdk;
         setLoginLoading(false);

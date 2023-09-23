@@ -42,7 +42,7 @@ export const LoggedInAccount: React.FC<Props> = ({ address, onLogout }) => {
                 href={`/profile/${address}`}
                 className={classNames(
                   active ? "text-[#FF89A9] bg-[#2b2b2b] rounded-md" : "",
-                  "block px-4 py-2 text-sm text-white",
+                  "block px-4 py-2 text-sm text-white"
                 )}
               >
                 Profile
@@ -56,7 +56,7 @@ export const LoggedInAccount: React.FC<Props> = ({ address, onLogout }) => {
                 onClick={handleLogout}
                 className={classNames(
                   active ? "text-[#FF89A9] bg-[#2b2b2b] rounded-md" : "",
-                  "block px-4 py-2 text-sm text-white",
+                  "block px-4 py-2 text-sm text-white"
                 )}
               >
                 Log out
