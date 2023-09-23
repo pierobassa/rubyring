@@ -5,7 +5,7 @@ import SocialLogin from "@biconomy/web3-auth";
 import { ethers } from "ethers";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
-import { FaArrowLeft } from "react-icons/fa6";
+import { FaArrowRightToBracket } from "react-icons/fa6";
 
 export const SocialLoginWrapper = memo(() => <SocialLoginContent />);
 
@@ -118,7 +118,10 @@ const SocialLoginContent = () => {
         />
       ) : (
         <div className="flex items-center ">
-          <FaArrowLeft className="h-6 w-6 text-[#2b2b2b]" aria-hidden="true" />
+          <FaArrowRightToBracket
+            className="h-6 w-6 text-[#2b2b2b]"
+            aria-hidden="true"
+          />
           <div className="text-[#2b2b2b] pl-1 font-medium">Join</div>
         </div>
       )}
