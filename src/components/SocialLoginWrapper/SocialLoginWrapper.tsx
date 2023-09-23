@@ -7,7 +7,7 @@ import { memo, useCallback, useEffect, useRef, useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 
-const productionUrl = "https://rubyring-zeta.vercel.app/";
+const productionUrl = "https://rubyring-zeta.vercel.app";
 
 export const SocialLoginWrapper = memo(() => <SocialLoginContent />);
 
@@ -71,6 +71,7 @@ const SocialLoginContent = () => {
             [productionUrl]: productionSignature
           }
         });
+        console.log("sdk initialized");
         sdkRef.current = sdk;
         setLoginLoading(false);
       }
