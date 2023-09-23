@@ -6,19 +6,18 @@
  * @returns the formatted address
  */
 export const humanAddress = (
-    address: string,
-    lengthBefore = 4,
-    lengthAfter = 10,
+  address: string,
+  lengthBefore = 4,
+  lengthAfter = 10,
 ) => {
-    const before = address.substring(0, lengthBefore)
-    const after = address.substring(address.length - lengthAfter)
-    return `${before}…${after}`
-}
+  const before = address.substring(0, lengthBefore);
+  const after = address.substring(address.length - lengthAfter);
+  return `${before}…${after}`;
+};
 
 export const formatNumberPrecision = (
-    number: number | string,
-    precision: number,
+  number: number | string,
+  precision: number,
 ) => {
-    return Number.parseFloat(number.toString()).toFixed(precision)
-}
-
+  return Number.parseFloat(number.toString()).toFixed(precision);
+};

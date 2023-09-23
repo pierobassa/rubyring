@@ -8,7 +8,7 @@ const Navbar = dynamic(
   () => import("../components/Navbar").then((res) => res.Navbar),
   {
     ssr: false,
-  }
+  },
 );
 
 export default function App({ Component, pageProps }: AppProps) {

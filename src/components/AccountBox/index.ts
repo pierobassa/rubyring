@@ -1,1 +1,1 @@
-export * from "./AccountBox"
+export * from "./AccountBox";
