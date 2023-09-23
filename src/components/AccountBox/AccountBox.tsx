@@ -1,14 +1,12 @@
 import { FaEthereum } from "react-icons/fa";
-import { DEFUALT_USER_IMG_PLACEHOLDER } from "@/constants";
 import { FormattingUtils } from "@/utils";
-import Image from "next/image";
 
 type Props = {
   userImg: string;
   userAddress: string;
 };
 
-export const AccountBox = ({ userImg, userAddress }: Props) => {
+export const AccountBox = ({ userAddress }: Props) => {
   return (
     <div className="bg-[#FF89A9] rounded-md">
       <div className="px-2 py-1 flex flex-row items-center">

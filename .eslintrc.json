@@ -9,7 +9,12 @@
     "prettier"
   ],
   "rules": {
-    "no-console": 3, // Means warning
+    "no-console": 0, // Means warning
     "prettier/prettier": 2 // Means error
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx,js,jsx}"]
+    }
+  ]
 }
