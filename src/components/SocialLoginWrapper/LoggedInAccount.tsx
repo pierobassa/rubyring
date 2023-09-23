@@ -2,9 +2,6 @@ import { AccountBox } from "@/components";
 import { Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { Fragment } from "react";
-// import { AccountInfo, useAccountInfo } from "@/Hooks"
-
-const navigation = [{ name: "Explore", href: "#", current: true }]; // TODO: Do we need navigation menu?
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -15,11 +12,7 @@ type Props = {
   onLogout: () => void;
 };
 export const LoggedInAccount: React.FC<Props> = ({ address, onLogout }) => {
-  // const { userInfo } = useAccountInfo(address)
-  //   const { execute: lensLogout, isPending } = useWalletLogout();
-
   const handleLogout = () => {
-    // lensLogout();
     onLogout();
   };
 
@@ -56,32 +49,7 @@ export const LoggedInAccount: React.FC<Props> = ({ address, onLogout }) => {
               </Link>
             )}
           </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <Link
-                href={"/wallet"}
-                className={classNames(
-                  active ? "text-[#FF89A9] bg-[#2b2b2b] rounded-md" : "",
-                  "block px-4 py-2 text-sm text-white "
-                )}
-              >
-                Wallet
-              </Link>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <Link
-                href={"/lens"}
-                className={classNames(
-                  active ? "text-[#FF89A9] bg-[#2b2b2b] rounded-md" : "",
-                  "block px-4 py-2 text-sm text-white "
-                )}
-              >
-                Lens
-              </Link>
-            )}
-          </Menu.Item>
+
           <Menu.Item>
             {({ active }) => (
               <a
