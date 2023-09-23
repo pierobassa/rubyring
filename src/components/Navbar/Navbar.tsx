@@ -4,8 +4,17 @@ import { useCallback, useState } from "react";
 import Link from "next/link";
 import { IconContext } from "react-icons";
 import { FaGem, FaBars, FaMagnifyingGlass, FaX } from "react-icons/fa6";
-import { SocialLoginWrapper } from "../SocialLoginWrapper";
+import dynamic from "next/dynamic";
 
+const SocialLoginWrapper = dynamic(
+  () =>
+    import("@/components/SocialLoginWrapper").then(
+      (res) => res.SocialLoginWrapper
+    ),
+  {
+    ssr: false
+  }
+);
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
 
