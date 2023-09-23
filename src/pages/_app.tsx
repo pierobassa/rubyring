@@ -11,11 +11,19 @@ const Navbar = dynamic(
   }
 );
 
+const BiconomyLensProvider = dynamic(
+  () =>
+    import("@/providers/BiconomyLensProvider").then(
+      (res) => res.BiconomyLensProvider
+    ),
+  { ssr: false }
+);
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <BiconomyLensProvider>
       <Navbar />
       <Component {...pageProps} />
-    </>
+    </BiconomyLensProvider>
   );
 }
