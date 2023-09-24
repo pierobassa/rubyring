@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import { Test, console } from "forge-std/Test.sol";
 import { RubyRingV1 } from "../src/RubyRingV1.sol";
 
-contract RubyRingTestV1 is Test {
+contract RubyRingV1Test is Test {
     RubyRingV1 public instance;
 
     event Trade(
@@ -278,6 +278,33 @@ contract RubyRingTestV1 is Test {
         vm.stopPrank();
     }
 
+    function testSellerBalanceIncreases() public {
+        vm.startPrank(address(0xA));
+
+        vm.deal(address(0xA), 10 ether);
+
+        instance.buyGems{ value: 0.1 ether }(address(0xA), 1);
+
+        instance.buyGems{ value: 5 ether }(address(0xA), 4);
+
+        uint256 sellPrice = instance.getSellPriceAfterFee(address(0xA), 1);
+        uint256 protocolFee = (sellPrice * instance.protocolFeePercent()) /
+            1 ether;
+        uint256 subjectFee = (sellPrice * instance.subjectFeePercent()) /
+            1 ether;
+
+        uint256 balanceBefore = address(0xA).balance;
+
+        instance.sellGems(address(0xA), 1);
+
+        assertEq(
+            address(0xA).balance,
+            balanceBefore + sellPrice - protocolFee - subjectFee
+        );
+
+        vm.stopPrank();
+    }
+
     // Ensure fees are transferred correctly and the seller receives the correct amount after fees.
     function testSellGemsFees() public {
         vm.startPrank(address(0xA));
@@ -311,34 +338,6 @@ contract RubyRingTestV1 is Test {
 
         vm.stopPrank();
     }
-
-     function testSellerBalanceIncreases() public {
-        vm.startPrank(address(0xA));
-
-        vm.deal(address(0xA), 10 ether);
-
-        instance.buyGems{ value: 0.1 ether }(address(0xA), 1);
-
-        instance.buyGems{ value: 5 ether }(address(0xA), 4);
-
-        uint256 sellPrice = instance.getSellPriceAfterFee(address(0xA), 1);
-        uint256 protocolFee = (sellPrice * instance.protocolFeePercent()) /
-            1 ether;
-        uint256 subjectFee = (sellPrice * instance.subjectFeePercent()) /
-            1 ether;
-
-        uint256 balanceBefore = address(0xA).balance;
-
-        instance.sellGems(address(0xA), 1);
-
-        assertEq(
-            address(0xA).balance,
-            balanceBefore + sellPrice - protocolFee - subjectFee
-        );
-
-        vm.stopPrank();
-    }
-
 
     /****************************************************************************
      * Price Calculations Tests

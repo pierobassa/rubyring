@@ -5,7 +5,7 @@ import "./Ownable.sol";
 
 // TODO: Events, final pricing model,
 /**
- * @title ExclusiveClubsV1
+ * @title RubyRingV1
  * @dev This smart contract allows users to buy and sell gems related to a specific subject.
  * The contract has an inbuilt fee mechanism that can be set for both the protocol and the subject.
  *
