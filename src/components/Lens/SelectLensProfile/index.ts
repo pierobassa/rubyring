@@ -1,1 +1,1 @@
-export * from "./SelectLensProfile";
+export * from "./SelectLensProfile"
