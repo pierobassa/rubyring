@@ -27,6 +27,7 @@ export default function AddProfilePictureForm({ setStep }: Props) {
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  //TODO: we hsould get rid of this as it should be outdated
   const { lensAccount } = useAccountStore();
 
   const {

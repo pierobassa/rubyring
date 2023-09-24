@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ["@lens-protocol"],
+  transpilePackages: ["@lens-protocol", "web3.storage"],
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {

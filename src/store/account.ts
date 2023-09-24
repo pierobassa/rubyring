@@ -81,7 +81,9 @@ export const useAccountStore = create<AccountState>()(
         smartAccountAddress: undefined,
         accountPrivateKey: undefined,
         socialLoginSdk: undefined,
-        provider: undefined
+        provider: undefined,
+        lensAccount: undefined,
+        socialAccountLoading: false
       })
   }))
 );

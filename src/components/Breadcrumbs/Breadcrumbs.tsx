@@ -21,7 +21,6 @@ export default function Breadcrumbs({ steps, currentStep }: Props) {
               ></span>
             )}
             <Breadcrumb
-              key={index}
               title={step}
               displayedNumber={index + 1}
               done={currentStep > index}
