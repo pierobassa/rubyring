@@ -30,9 +30,9 @@ export default function Publications({
   return (
     <div className="w-full flex flex-col md:flex-row gap-4 justify-between items-stretch flex-wrap">
       {!publications.length && (
-        <div className="flex flex-col items-center justify-center">
+        <div className="w-full flex flex-col items-center justify-center">
           <div className="text-2xl font-bold">No posts yet</div>
-          <div className="text-lg font-medium">
+          <div className="text-lg font-medium text-gray-500">
             {lensHandle} has not posted anything yet
           </div>
         </div>

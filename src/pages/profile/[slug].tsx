@@ -1,8 +1,13 @@
 "use client";
-import { useAccountInfo, useDisclosure, useGemsInfo } from "@/hooks";
+import {
+  useAccountInfo,
+  useDisclosure,
+  useGemsInfo,
+  useResolveEoaAddress
+} from "@/hooks";
 import { useRouter } from "next/router";
 import { FaGem } from "react-icons/fa";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { ethers } from "ethers";
 import dynamic from "next/dynamic";
 import { BaseSpacer } from "@/components";
@@ -11,8 +16,6 @@ import {
   useProfile,
   usePublications
 } from "@lens-protocol/react-web";
-import axios from "axios";
-import { RubyRingAPI } from "@/networking";
 import { LensUtils } from "@/utils";
 import { BeatLoader } from "react-spinners";
 
@@ -62,8 +65,6 @@ export default function Profile() {
   const router = useRouter();
 
   // Address of the smart account of the given Lens profile
-  const [profileSmartAccountAddress, setProfileSmartAccountAddress] =
-    useState<string>("");
 
   const profileHandle = router.query.slug as string;
 
@@ -82,12 +83,14 @@ export default function Profile() {
     profileId: profileId(profile?.id?.toString() ?? "")
   });
 
+  const { smartAccountAddress: profileSmartAccountAddress } =
+    useResolveEoaAddress(profile?.handle ?? "");
+
   console.log({
     profile,
     publications,
     loading,
-    loadingPublications,
-    profileSmartAccountAddress
+    loadingPublications
   });
 
   const {
@@ -97,7 +100,7 @@ export default function Profile() {
     fetchBuyPrice,
     fetchGemBalance,
     fetchSellPrice
-  } = useGemsInfo(profileSmartAccountAddress, smartAccountAddress ?? "");
+  } = useGemsInfo(profileSmartAccountAddress ?? "", smartAccountAddress ?? "");
 
   const userGemBalance = useMemo(() => {
     return gemBalance.toNumber();
@@ -156,38 +159,12 @@ export default function Profile() {
     openTradeDialog
   ]);
 
-  const getSmartAccountAddress = useCallback(async () => {
-    try {
-      const { data, status } = await axios.get(
-        RubyRingAPI.GET_RING_DATA_ENDPOINT(profileHandle)
-      );
-
-      if (status !== 200) return; //TODO
-
-      console.log(data);
-
-      setProfileSmartAccountAddress(data.data[0].smart_account_address);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [profileHandle]);
-
-  // Fetch the smart account address of the given Lens profile
-  useEffect(() => {
-    setProfileSmartAccountAddress("");
-
-    getSmartAccountAddress();
-    prev();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profileHandle]);
-
-  console.log({ profileSmartAccountAddress });
-
   const profilePicture = useMemo(
     () => LensUtils.getProfilePicture(profile),
     [profile]
   );
+
+  console.log({ smartAccountAddress, profileSmartAccountAddress });
 
   return (
     <div className="w-full pt-6 bg-[#170c10]">
@@ -253,7 +230,7 @@ export default function Profile() {
           userName={userInfo?.name ?? ""}
           userImg={profilePicture}
           userAddress={smartAccountAddress ?? ""}
-          gemSubjectAddress={profileSmartAccountAddress}
+          gemSubjectAddress={profileSmartAccountAddress ?? ""}
           isOpen={isTradeDialogOpen}
           buyPriceEther={buyPriceEther}
           sellPriceEther={sellPriceEther}
@@ -273,7 +250,7 @@ export default function Profile() {
           costInEth={isBuy ? buyPrice : sellPrice}
           userImg={userInfo?.profileImage ?? ""} // TODO replace with the profile's image fetched from BE
           userName={userInfo?.name ?? ""} // TODO replace with the profile's name fetched from BE
-          gemSubjectAddress={profileSmartAccountAddress}
+          gemSubjectAddress={profileSmartAccountAddress ?? ""}
           onTxFinish={onTxFinish}
         />
       </div>
