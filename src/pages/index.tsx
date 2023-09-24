@@ -9,10 +9,10 @@ import dynamic from "next/dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const LensAccountCard = dynamic(
+const LensProfileCard = dynamic(
   () =>
-    import("@/components/Lens/LensAccountCard/LensAccountCard").then(
-      (res) => res.default
+    import("@/components/Lens/LensProfileCard/LensProfileCard").then(
+      (res) => res.LensProfileCard
     ),
   {
     ssr: false
@@ -37,16 +37,29 @@ export default function Home() {
               data-testid="loader"
             />
           )}
-          {smartAccountAddress && (
-            <h1 className="text-green-800">
-              Logged in as: {smartAccountAddress}
-            </h1>
-          )}
-          <div className="w-1/2 self-center">
-            <WithLensContext Component={<LensAccountCard />} />
+          <div className="w-1/2 self-center flex flex-col gap-2">
+            {smartAccountAddress && (
+              <h1 className="font-bold text-xl self-start">Your profile</h1>
+            )}
+
+            <WithLensContext Component={<LoggedAccountProfileCard />} />
           </div>
         </div>
       </Suspense>
     </main>
   );
 }
+
+const LoggedAccountProfileCard = () => {
+  const { lensAccount } = useAccountStore();
+
+  if (!lensAccount) return null;
+  return (
+    <LensProfileCard
+      cardClassName="bg-[#2b2b2b] rounded-md p-4"
+      activeProfile={lensAccount}
+      profile={lensAccount}
+      renderFollowButton={false}
+    />
+  );
+};

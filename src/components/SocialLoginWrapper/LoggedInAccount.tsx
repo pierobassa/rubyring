@@ -1,5 +1,6 @@
 import { AccountBox } from "@/components";
 import { Menu, Transition } from "@headlessui/react";
+import { useWalletLogout } from "@lens-protocol/react-web";
 import Link from "next/link";
 import { Fragment } from "react";
 
@@ -12,7 +13,9 @@ type Props = {
   onLogout: () => void;
 };
 export const LoggedInAccount: React.FC<Props> = ({ address, onLogout }) => {
+  const { execute: lensLogout } = useWalletLogout();
   const handleLogout = () => {
+    lensLogout();
     onLogout();
   };
 

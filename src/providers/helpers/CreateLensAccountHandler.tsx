@@ -70,24 +70,14 @@ function CreateLensAccountComponent() {
   useEffect(() => {
     if (!profiles) return;
 
-    // if (profiles.length === 0 && !pathRouter.pathname.includes("onboarding")) {
-    //   router.push("/onboarding");
-    //   return;
-    // }
+    if (profiles.length === 0 && !pathRouter.pathname.includes("onboarding")) {
+      router.push("/onboarding");
+      return;
+    }
     if (profiles.length > 0 && !lensAccount) {
       setLensAccount(profiles[0]);
     }
   }, [lensAccount, pathRouter.pathname, profiles, router, setLensAccount]);
-
-  useEffect(() => {
-    if (!profiles) return;
-
-    if (profiles.length === 0) return;
-
-    if (profiles[0].handle === lensAccount?.handle) return;
-
-    setLensAccount(profiles[0]);
-  }, [profiles, setLensAccount]);
 
   console.log({ profiles });
 

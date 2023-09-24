@@ -1,5 +1,5 @@
 import React from "react";
-import { GemLoader } from "../../Assets";
+import { GemLoader } from "@/assets";
 import Lottie from "lottie-react";
 
 export const Loader = () => {
