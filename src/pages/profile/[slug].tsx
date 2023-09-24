@@ -53,6 +53,8 @@ const ProfileComponent = () => {
   // Address of the smart account of the given Lens profile
 
   const profileHandle = router.query.slug as string;
+  const { smartAccountAddress: profileSmartAccountAddress } =
+    useResolveEoaAddress(profileHandle);
 
   //TODO: handle loading state
   const {
@@ -65,9 +67,6 @@ const ProfileComponent = () => {
   const { data: activeProfile } = useActiveProfile();
 
   console.log({ profile });
-
-  const { smartAccountAddress: profileSmartAccountAddress } =
-    useResolveEoaAddress(profile?.handle);
 
   const {
     buyPrice,
@@ -135,8 +134,9 @@ const ProfileComponent = () => {
     openTradeDialog
   ]);
 
-  if (!profile || !activeProfile)
+  if (!profile || !activeProfile) {
     return <h1 className="font-bold text2xl">Profile not found</h1>;
+  }
 
   return (
     <div>
