@@ -1,6 +1,6 @@
 import { SuccessAnimationLottie } from "@/components";
 import { WithLensContext } from "@/providers";
-import { useAccountStore } from "@/store";
+import { useActiveProfile } from "@lens-protocol/react-web";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -45,7 +45,7 @@ const ONBOARDING_STEPS = ["Account Handle", "Account image", "Account ready"];
 function OnboardingComponent() {
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
 
-  const { lensAccount } = useAccountStore();
+  const { data: activeProfile } = useActiveProfile();
 
   const renderOnboardingStep = useMemo(() => {
     switch (activeStepIndex) {
@@ -58,7 +58,7 @@ function OnboardingComponent() {
         return (
           <div className="flex flex-col items-center justify-center w-full h-[30vh]">
             <SuccessAnimationLottie />
-            <Link href={`/profile/${lensAccount?.handle}`}>
+            <Link href={`/profile/${activeProfile?.handle}`}>
               <button
                 className={
                   "bg-[#FF89A9] flex justify-center items-center  rounded-md text-[#2b2b2b] w-full mt-8 hover:brightness-90"
@@ -73,7 +73,7 @@ function OnboardingComponent() {
           </div>
         );
     }
-  }, [activeStepIndex]);
+  }, [activeStepIndex, activeProfile?.handle]);
 
   return (
     <div className="px-4">

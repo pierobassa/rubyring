@@ -6,24 +6,13 @@ import { ConnectedAccountProfileCard, Loader } from "@/components";
 import { useCallback } from "react";
 import { FormattingUtils } from "@/utils";
 import { DEFUALT_USER_IMG_PLACEHOLDER } from "@/constants";
+import { useActiveProfile } from "@lens-protocol/react-web";
+import { WithLensContext } from "@/providers";
 //eslint-disable-next-line
 const RubyRingHero = require("@/assets/ruby_ring_hero.png");
 
 export default function HomepageComponent() {
-  const { socialAccountLoading, smartAccountAddress, lensAccount } =
-    useAccountStore();
-
-  const getProfilePicture = useCallback(() => {
-    if (!lensAccount) return DEFUALT_USER_IMG_PLACEHOLDER;
-    if (lensAccount.picture?.__typename === "MediaSet") {
-      const ipfsUrl = FormattingUtils.ipfsUriToHttps(
-        lensAccount.picture.original.url
-      );
-      return ipfsUrl ?? lensAccount.picture.original.url;
-    } else {
-      return DEFUALT_USER_IMG_PLACEHOLDER;
-    }
-  }, [lensAccount]);
+  const { socialAccountLoading, smartAccountAddress } = useAccountStore();
 
   return (
     <section className="bg-[#170c10] text-white">
@@ -60,17 +49,45 @@ export default function HomepageComponent() {
             </div>
           )}
           {smartAccountAddress && (
-            <div>
-              <div className="font-bold text-xl py-3">Your account</div>
-              <ConnectedAccountProfileCard
-                profileImage={getProfilePicture()}
-                profileHandle={lensAccount?.handle ?? ""}
-                smartAccountAddress={smartAccountAddress}
-              />
-            </div>
+            <WithLensContext
+              Component={
+                <ConnectedProfile smartAccountAddress={smartAccountAddress} />
+              }
+            />
           )}
         </div>
       </div>
     </section>
   );
 }
+
+type ConnectedProfileProps = {
+  smartAccountAddress: string;
+};
+const ConnectedProfile: React.FC<ConnectedProfileProps> = ({
+  smartAccountAddress
+}) => {
+  const { data: activeProfile } = useActiveProfile();
+  const getProfilePicture = useCallback(() => {
+    if (!activeProfile) return DEFUALT_USER_IMG_PLACEHOLDER;
+    if (activeProfile.picture?.__typename === "MediaSet") {
+      const ipfsUrl = FormattingUtils.ipfsUriToHttps(
+        activeProfile.picture.original.url
+      );
+      return ipfsUrl ?? activeProfile.picture.original.url;
+    } else {
+      return DEFUALT_USER_IMG_PLACEHOLDER;
+    }
+  }, [activeProfile]);
+
+  return (
+    <div>
+      <div className="font-bold text-xl py-3">Your account</div>
+      <ConnectedAccountProfileCard
+        profileImage={getProfilePicture()}
+        profileHandle={activeProfile?.handle ?? ""}
+        smartAccountAddress={smartAccountAddress}
+      />
+    </div>
+  );
+};
