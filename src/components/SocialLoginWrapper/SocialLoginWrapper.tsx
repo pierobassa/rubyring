@@ -7,7 +7,7 @@ import { memo, useCallback, useEffect, useRef, useState } from "react";
 import BeatLoader from "react-spinners/BeatLoader";
 import { FaArrowRightToBracket } from "react-icons/fa6";
 
-const localhostUrl = "http://127.0.0.1:3000/";
+const localhostUrl = "http://127.0.0.1:3000";
 const productionUrl = "https://rubyring-zeta.vercel.app";
 
 export const SocialLoginWrapper = memo(() => <SocialLoginContent />);
