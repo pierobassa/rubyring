@@ -1,10 +1,9 @@
 import { ethers } from "ethers"
 import { useMemo } from "react"
-import { useAccountInfo } from "@/Hooks"
+import { useAccountInfo } from "@/hooks"
 import { FaEthereum } from "react-icons/fa"
-import Link from "next/link"
-import { DEFUALT_USER_IMG_PLACEHOLDER } from "../../Constants/Media"
-import { FormattingUtils } from "@/Utils"
+import { DEFUALT_USER_IMG_PLACEHOLDER } from "@/constants"
+import { FormattingUtils } from "@/utils"
 
 type Props = {
     userImg: string

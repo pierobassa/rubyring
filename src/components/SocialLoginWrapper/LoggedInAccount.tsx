@@ -2,7 +2,7 @@ import { AccountBox } from "@/components"
 import { Menu, Transition } from "@headlessui/react"
 import Link from "next/link"
 import { Fragment, useMemo } from "react"
-import { AccountInfo, useAccountInfo } from "@/Hooks"
+import { AccountInfo, useAccountInfo } from "@/hooks"
 import { useProfile, useWalletLogout } from "@lens-protocol/react-web"
 import { useAccountStore } from "@/store"
 

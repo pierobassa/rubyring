@@ -1,6 +1,6 @@
 "use client"
-import { DEFUALT_USER_IMG_PLACEHOLDER } from "../../Constants/Media"
-import { useAccountInfo, useDialog, useGemsInfo } from "@/Hooks"
+import { DEFUALT_USER_IMG_PLACEHOLDER } from "@/constants"
+import { useAccountInfo, useDialog, useGemsInfo } from "@/hooks"
 import { useRouter } from "next/router"
 import { FaGem } from "react-icons/fa"
 import { useCallback, useEffect, useMemo, useState } from "react"
