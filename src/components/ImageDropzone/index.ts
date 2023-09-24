@@ -1,1 +1,1 @@
-export * from "./ImageDropzone";
+export * from "./ImageDropzone"
