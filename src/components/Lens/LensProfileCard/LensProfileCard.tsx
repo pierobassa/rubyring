@@ -9,6 +9,8 @@ import {
 import Image from "next/image";
 import { useCallback } from "react";
 import { BeatLoader } from "react-spinners";
+import { GemsInfo } from "./GemsInfo";
+import { useAccountInfo, useResolveEoaAddress } from "@/hooks";
 
 type Props = {
   activeProfile: ProfileOwnedByMe;
@@ -25,6 +27,10 @@ export const LensProfileCard: React.FC<Props> = ({
   renderFollowButton = true,
   cardClassName
 }) => {
+  const { smartAccountAddress } = useAccountInfo();
+  const { smartAccountAddress: subjectSmartAccountAddress } =
+    useResolveEoaAddress(profile.handle);
+
   //TODO: handle errors
   const {
     execute: follow,
@@ -94,8 +100,8 @@ export const LensProfileCard: React.FC<Props> = ({
           <h1 className="m-0 text-sm font-bold text-white">{profile.id}</h1>
         </div>
       </div>
-      {renderFollowButton && (
-        <div className="flex items-center">
+      <div className="flex flex-col gap-2 items-center">
+        {renderFollowButton && (
           <button
             onClick={handleOnFollowClick}
             disabled={isButtonDisabled}
@@ -111,8 +117,14 @@ export const LensProfileCard: React.FC<Props> = ({
               "Follow"
             )}
           </button>
-        </div>
-      )}
+        )}
+        {subjectSmartAccountAddress && smartAccountAddress && (
+          <GemsInfo
+            gemSubject={subjectSmartAccountAddress}
+            address={smartAccountAddress}
+          />
+        )}
+      </div>
       {/* <div className="bg-[#FF89A9] rounded-md text-[#2b2b2b] text-xs md:text-sm"> 
        <button
                 className="py-2 px-3 flex items-center justify-between"
