@@ -1,5 +1,5 @@
 import { ethers } from "ethers"
-import { DEFUALT_USER_IMG_PLACEHOLDER } from "../../constants/media"
+import { DEFUALT_USER_IMG_PLACEHOLDER } from "@/constants"
 import { OpenloginUserInfo } from "@toruslabs/openlogin"
 import { FormattingUtils } from "@/utils"
 import { BiCopy } from "react-icons/bi"

@@ -2,7 +2,7 @@ import { ethers } from "ethers"
 import { useMemo } from "react"
 import { useAccountInfo } from "@/hooks"
 import { FaEthereum } from "react-icons/fa"
-import { DEFUALT_USER_IMG_PLACEHOLDER } from "../../constants/media"
+import { DEFUALT_USER_IMG_PLACEHOLDER } from "@/constants"
 import { FormattingUtils } from "@/utils"
 
 type Props = {
