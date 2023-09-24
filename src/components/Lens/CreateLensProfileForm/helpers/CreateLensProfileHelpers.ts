@@ -1,5 +1,3 @@
-import { CIDString } from "web3.storage"
-
-export const getWeb3StorageLink = (CID: CIDString) => {
+export const getWeb3StorageLink = (CID: unknown) => {
     return `https://${CID}.ipfs.w3s.link/`
 }

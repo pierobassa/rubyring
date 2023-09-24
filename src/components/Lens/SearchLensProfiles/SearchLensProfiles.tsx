@@ -21,7 +21,12 @@ export const SearchLensProfiles = () => {
                     activeProfile={activeProfile}
                 />
             )}
-            <SearchBar/>
+            <SearchBar
+                placeholder="Search any lens profile..."
+                value={""}
+                onChange={handOnChange}
+                onClick={onOpen}
+            />
         </>
     )
 }

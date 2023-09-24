@@ -14,7 +14,6 @@ import React, {
     useState,
 } from "react"
 import { web3StorageClient } from "@/Networking"
-import { Filelike } from "web3.storage"
 import { FaGem } from "react-icons/fa"
 import { getWeb3StorageLink } from "../CreateLensProfileForm/helpers"
 import { Loader } from "@/components/Loader"

@@ -18,9 +18,7 @@ import {
     RubyRingAPI,
     web3StorageClient,
 } from "@/Networking"
-import { Filelike } from "web3.storage"
 import { FaGem } from "react-icons/fa"
-import { getWeb3StorageLink } from "./helpers"
 import { Loader } from "@/components/Loader"
 import { useAccountStore } from "@/store"
 import axios from "axios"
