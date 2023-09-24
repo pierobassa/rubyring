@@ -1,1 +1,1 @@
-export * from "./SocialLoginWrapper";
+export * from "./SocialLoginWrapper"
