@@ -1,17 +1,10 @@
 import os
 import motor.motor_asyncio
 
-MONGO_URI = os.environ.get('MONGO_URI')
-DB_NAME = os.environ.get('DB_NAME')
+MONGO_DETAILS = os.environ.get('MONGO_DETAILS')
 
-if not MONGO_URI:
-    raise ValueError("MONGO_URI is not defined")
+client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 
-if not DB_NAME:
-    raise ValueError("DB_NAME is not defined")
-
-client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
-
-database = client[DB_NAME]
+database = client.ruby_ring
 
 ring_collection = database.get_collection("ruby_ring_collection")
