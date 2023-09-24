@@ -1,4 +1,4 @@
-import { useDisclosure } from "@/Hooks"
+import { useDisclosure } from "@/hooks"
 import { SearchBar, SpotlightSearchLensProfilesDialog } from "@/components"
 import { useActiveProfile } from "@lens-protocol/react-web"
 import { useCallback } from "react"
@@ -21,12 +21,7 @@ export const SearchLensProfiles = () => {
                     activeProfile={activeProfile}
                 />
             )}
-            <SearchBar
-                placeholder="Search any lens profile..."
-                value={""}
-                onChange={handOnChange}
-                onClick={onOpen}
-            />
+            <SearchBar/>
         </>
     )
 }

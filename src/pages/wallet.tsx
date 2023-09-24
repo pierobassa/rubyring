@@ -5,7 +5,7 @@ import { isUndefined } from "lodash"
 import { OpenloginUserInfo } from "@toruslabs/openlogin"
 import dynamic from "next/dynamic"
 import { useAccountStore } from "@/store"
-import { useDialog } from "@/Hooks"
+import { useDialog } from "@/hooks"
 import { useProfile } from "@lens-protocol/react-web"
 
 const AccountCard = dynamic(

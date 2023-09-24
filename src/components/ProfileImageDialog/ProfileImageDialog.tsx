@@ -4,7 +4,7 @@ import { ImageDropzone } from "../ImageDropzone"
 import { useCallback, useMemo, useState } from "react"
 import { isUndefined } from "lodash"
 import { useProfile, useUpdateProfileImage } from "@lens-protocol/react-web"
-import { useAccountInfo } from "@/Hooks"
+import { useAccountInfo } from "@/hooks"
 import { useAccountStore } from "@/store"
 import {
     RequestBodyBuilders,

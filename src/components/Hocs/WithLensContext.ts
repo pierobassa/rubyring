@@ -1,4 +1,4 @@
-import { BiconomyLensContext, BiconomyLensProvider } from "@/Providers"
+import { BiconomyLensContext } from "@/providers"
 import { useRouter } from "next/router"
 import { useContext } from "react"
 
