@@ -5,6 +5,8 @@ import Link from "next/link";
 import { IconContext } from "react-icons";
 import { FaGem, FaBars, FaMagnifyingGlass, FaX } from "react-icons/fa6";
 import dynamic from "next/dynamic";
+import { WithLensContext } from "@/providers";
+import { SearchLensProfiles } from "..";
 
 const SocialLoginWrapper = dynamic(
   () =>
@@ -63,6 +65,9 @@ export const Navbar = () => {
                 </IconContext.Provider>
               </Link>
             </div>
+          </div>
+          <div className="w-96 hidden md:block md:w-96">
+            <WithLensContext Component={<SearchLensProfiles />} />
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             {/* Profile dropdown */}
