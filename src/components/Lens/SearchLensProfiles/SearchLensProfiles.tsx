@@ -1,4 +1,4 @@
-import { useDisclosure } from "@/hooks"
+import { useDisclosure } from "@/Hooks"
 import { SearchBar, SpotlightSearchLensProfilesDialog } from "@/components"
 import { useActiveProfile } from "@lens-protocol/react-web"
 import { useCallback } from "react"
