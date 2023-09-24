@@ -13,26 +13,11 @@ type Props = {
  * @returns
  */
 export const GemsInfo: React.FC<Props> = ({ gemSubject, address }) => {
-  const {
-    // buyPrice,
-    // sellPrice,
-    gemBalance
-    // fetchBuyPrice,
-    // fetchGemBalance,
-    // fetchSellPrice
-  } = useGemsInfo(gemSubject, address);
+  const { gemBalance } = useGemsInfo(gemSubject, address);
 
   const userGemBalance = useMemo(() => {
     return gemBalance.toNumber();
   }, [gemBalance]);
-
-  // const buyPriceEther = useMemo(() => {
-  //   return ethers.utils.formatEther(buyPrice);
-  // }, [buyPrice]);
-
-  // const sellPriceEther = useMemo(() => {
-  //   return ethers.utils.formatEther(sellPrice);
-  // }, [sellPrice]);
 
   return (
     <div className="flex items-center">
