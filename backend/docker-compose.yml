@@ -1,0 +1,28 @@
+version: "3"
+services:
+  db:
+    image: mongo:latest
+    container_name: mongodb
+    networks:
+      - app_network
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo_data:/data/db
+    env_file:
+      - .env # Reference the environment file here
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    env_file:
+      - .env # Reference the environment file here
+    depends_on:
+      - db
+
+networks:
+  app_network:
+    driver: bridge
