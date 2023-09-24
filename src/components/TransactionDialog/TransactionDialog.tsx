@@ -170,7 +170,7 @@ export default function TransactionDialog({
             </div>
 
             <div className="py-6">
-              <BaseSeparator color="#444444" />
+              <BaseSeparator className="w-full h-1 bg-#444444" />
             </div>
 
             <div className="w-full bg-stone-800 rounded-lg ">
