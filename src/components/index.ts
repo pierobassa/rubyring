@@ -1,4 +1,6 @@
 export * from "./AccountBox";
+export * from "./AccountCard";
+export * from "./Base";
 export * from "./Breadcrumbs";
 export * from "./ImageDropzone";
 export * from "./InputField";
