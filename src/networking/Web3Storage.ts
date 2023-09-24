@@ -1,4 +1,4 @@
-import { Web3Storage } from "web3.storage";
+import { Web3Storage } from "node_modules/web3.storage";
 
 const WEB3_STORAGE_TOKEN = process.env.NEXT_PUBLIC_WEB3_STORAGE_TOKEN;
 
