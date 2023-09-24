@@ -3,7 +3,8 @@ import { useCallback, useState } from "react";
 
 import Link from "next/link";
 import { IconContext } from "react-icons";
-import { FaGem, FaBars, FaMagnifyingGlass, FaX } from "react-icons/fa6";
+import { FaGem, FaBars } from "react-icons/fa";
+import { FaMagnifyingGlass, FaX } from "react-icons/fa6";
 import dynamic from "next/dynamic";
 import { WithLensContext } from "@/providers";
 import { SearchLensProfiles } from "..";
