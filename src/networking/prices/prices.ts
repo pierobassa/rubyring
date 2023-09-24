@@ -1,16 +1,16 @@
-import { BigNumber } from "ethers";
-import { CONTRACT } from "@/provider";
+import { BigNumber } from "ethers"
+import { CONTRACT } from "../Provider"
 
 export const getSubjectBuyPrice = async (
-  accountAddress: string,
-  amount: number
+    accountAddress: string,
+    amount: number,
 ): Promise<BigNumber> => {
-  return CONTRACT.getBuyPriceAfterFee(accountAddress, amount);
-};
+    return CONTRACT.getBuyPriceAfterFee(accountAddress, amount)
+}
 
 export const getSubjectSellPrice = async (
-  accountAddress: string,
-  amount: number
+    accountAddress: string,
+    amount: number,
 ): Promise<BigNumber> => {
-  return CONTRACT.getSellPriceAfterFee(accountAddress, amount);
-};
+    return CONTRACT.getSellPriceAfterFee(accountAddress, amount)
+}

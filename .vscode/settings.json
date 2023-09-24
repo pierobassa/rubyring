@@ -1,0 +1,15 @@
+{
+    "eslint.format.enable": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "window.zoomLevel": 0,
+    "editor.formatOnSave": true
+}

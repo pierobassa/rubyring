@@ -1,2 +1,3 @@
-import * as FormattingUtils from "./FormattingUtils";
-export default FormattingUtils;
+import * as FormattingUtils from "./FormattingUtils"
+
+export default FormattingUtils

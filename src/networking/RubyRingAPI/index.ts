@@ -1,4 +1,4 @@
-import * as RubyRingAPI from "./RubyRingAPI";
-import * as RequestBodyBuilders from "./RequestBodyBuilders";
+import * as RubyRingAPI from "./RubyRingAPI"
+import * as RequestBodyBuilders from "./RequestBodyBuilders"
 
-export { RubyRingAPI, RequestBodyBuilders };
+export { RubyRingAPI, RequestBodyBuilders }

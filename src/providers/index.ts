@@ -1,2 +1,1 @@
-export * from "./BiconomyLensProvider";
-export * from "./helpers";
+export * from "./BiconomyLensProvider"
