@@ -1,12 +1,13 @@
 import { Alchemy } from "alchemy-sdk";
 import { ethers } from "ethers";
+import { CONTRACT_ABI } from "@/ABI";
 import { config } from "@/config";
 
 const ALCHEMY_API_KEY = process.env.NEXT_PLUBIC_ALCHEMY_API_KEY;
 
 const INFURA_API_KEY = process.env.NEXT_PUBLIC_INFURA_API_KEY;
 
-// const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
 const settings = {
   apiKey: ALCHEMY_API_KEY,
@@ -21,8 +22,8 @@ export const infuraProvider = new ethers.providers.InfuraProvider(
   INFURA_API_KEY
 );
 
-// export const CONTRACT = new ethers.Contract(
-//   CONTRACT_ADDRESS ?? "",
-//   CONTRACT_ABI.abi,
-//   infuraProvider
-// );
+export const CONTRACT = new ethers.Contract(
+  CONTRACT_ADDRESS ?? "",
+  CONTRACT_ABI.abi,
+  infuraProvider
+);
