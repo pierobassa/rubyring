@@ -47,12 +47,12 @@ export default Profile;
 
 const ProfileComponent = () => {
   const { userInfo, smartAccountAddress } = useAccountInfo();
-
   const router = useRouter();
 
   // Address of the smart account of the given Lens profile
 
   const profileHandle = router.query.slug as string;
+
   const { smartAccountAddress: profileSmartAccountAddress } =
     useResolveEoaAddress(profileHandle);
 
