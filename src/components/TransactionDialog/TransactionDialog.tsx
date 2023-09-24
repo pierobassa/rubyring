@@ -7,7 +7,7 @@ import { FormattingUtils } from "../../Utils";
 import { IconContext } from "react-icons";
 import { Transactions } from "@/networking";
 import toast from "react-hot-toast";
-import { Loader } from "../Loader";
+import { Loader } from "@/components/Loader";
 import { useAccountStore } from "@/store";
 
 type Props = {
