@@ -124,7 +124,7 @@ const SocialLoginContent = () => {
           data-testid="loader"
         />
       ) : (
-        <div className="flex items-center ">
+        <div className="flex items-center gap-1 ">
           <FaArrowRightToBracket
             className="h-6 w-6 text-[#2b2b2b]"
             aria-hidden="true"

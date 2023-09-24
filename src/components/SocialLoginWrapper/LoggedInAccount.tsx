@@ -1,7 +1,7 @@
 import { AccountBox } from "@/components";
 import { useAccountStore } from "@/store";
 import { Menu, Transition } from "@headlessui/react";
-import { useWalletLogout } from "@lens-protocol/react-web";
+import { useActiveProfile, useWalletLogout } from "@lens-protocol/react-web";
 import Link from "next/link";
 import { Fragment } from "react";
 
@@ -15,6 +15,7 @@ type Props = {
 };
 export const LoggedInAccount: React.FC<Props> = ({ address, onLogout }) => {
   const { execute: lensLogout } = useWalletLogout();
+  const { data: activeProfile } = useActiveProfile();
   const { clear } = useAccountStore();
   const handleLogout = async () => {
     clear();
@@ -43,7 +44,7 @@ export const LoggedInAccount: React.FC<Props> = ({ address, onLogout }) => {
           <Menu.Item>
             {({ active }) => (
               <Link
-                href={`/profile/${address}`}
+                href={`/profile/${activeProfile?.handle}`}
                 className={classNames(
                   active ? "text-[#FF89A9] bg-[#2b2b2b] rounded-md" : "",
                   "block px-4 py-2 text-sm text-white"

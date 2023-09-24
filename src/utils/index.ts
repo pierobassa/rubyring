@@ -1,2 +1,3 @@
 import FormattingUtils from "./FormattingUtils";
-export { FormattingUtils };
+import LensUtils from "./LensUtils";
+export { FormattingUtils, LensUtils };

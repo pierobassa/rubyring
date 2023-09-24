@@ -1,15 +1,7 @@
 type Props = {
-  color: string;
+  className?: string;
 };
 
-export const BaseSeparator = ({ color }: Props) => {
-  return (
-    <div
-      style={{
-        backgroundColor: color,
-        width: "100%",
-        height: 1
-      }}
-    />
-  );
+export const BaseSeparator = ({ className = "h-1 bg-white w-full" }: Props) => {
+  return <div className={className} />;
 };

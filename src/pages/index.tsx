@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 const inter = Inter({ subsets: ["latin"] });
 
 const HomepageComponent = dynamic(
-  () => import("@/components/Homepage/Homepage"),
+  () => import("@/components/Pages/Homepage/Homepage"),
   { ssr: false }
 );
 

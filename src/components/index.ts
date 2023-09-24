@@ -10,3 +10,5 @@ export * from "./Navbar";
 export * from "./SearchBar";
 export * from "./SocialLoginWrapper";
 export * from "./SuccessAnimation";
+export * from "./TradeDialog";
+export * from "./TransactionDialog";
