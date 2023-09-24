@@ -1,5 +1,5 @@
 import { FaEthereum, FaGem } from "react-icons/fa"
-import { DEFUALT_USER_IMG_PLACEHOLDER } from "../../constants/media"
+import { DEFUALT_USER_IMG_PLACEHOLDER } from "@/constants"
 import { BaseDialog, BaseSeparator, BaseSpacer } from "../Base"
 
 type Props = {
