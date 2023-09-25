@@ -147,7 +147,7 @@ cast call $DEPLOYED_CONTRACT_ADDRESS "gemsBalance(address, address)" 0x05789ff70
 
 #### Installation
 
-```python
+```bash
 cd backend
 source venv/bin/activate
 source .env
