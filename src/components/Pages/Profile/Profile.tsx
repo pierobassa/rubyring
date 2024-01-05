@@ -8,9 +8,8 @@ import {
 import { useRouter } from "next/router";
 import { FaGem } from "react-icons/fa";
 import { useCallback, useMemo, useState } from "react";
-import { ethers } from "ethers";
 import dynamic from "next/dynamic";
-import { BaseSpacer } from "@/components";
+import { BaseSpacer, GemsPriceInfo } from "@/components";
 import {
   profileId,
   useProfile,
@@ -19,14 +18,6 @@ import {
 import { LensUtils } from "@/utils";
 import { BeatLoader } from "react-spinners";
 import { WithLensContext } from "@/providers";
-
-const TradeDialog = dynamic(
-  () =>
-    import("@/components/TradeDialog/TradeDialog").then((res) => res.default),
-  {
-    ssr: false
-  }
-);
 
 const TransactionDialog = dynamic(
   () =>
@@ -109,20 +100,6 @@ function ProfileContent() {
     return gemBalance.toNumber();
   }, [gemBalance]);
 
-  const buyPriceEther = useMemo(() => {
-    return ethers.utils.formatEther(buyPrice);
-  }, [buyPrice]);
-
-  const sellPriceEther = useMemo(() => {
-    return ethers.utils.formatEther(sellPrice);
-  }, [sellPrice]);
-
-  const {
-    isOpen: isTradeDialogOpen,
-    onOpen: openTradeDialog,
-    onClose: closeTradeDialog
-  } = useDisclosure();
-
   const {
     isOpen: isTransactionDialogOpen,
     onOpen: openTransactionDialog,
@@ -131,36 +108,25 @@ function ProfileContent() {
 
   const [isBuy, setIsBuy] = useState(true);
 
-  const onBuyPress = useCallback(() => {
+  const onBuyClick = useCallback(() => {
     setIsBuy(true);
 
-    closeTradeDialog();
-
     openTransactionDialog();
-  }, [closeTradeDialog, openTransactionDialog]);
+  }, [openTransactionDialog]);
 
-  const onSellPress = useCallback(() => {
+  const onSellClick = useCallback(() => {
     setIsBuy(false);
 
-    closeTradeDialog();
-
     openTransactionDialog();
-  }, [closeTradeDialog, openTransactionDialog]);
+  }, [openTransactionDialog]);
 
   const onTxFinish = useCallback(() => {
     closeTransactionDialog();
-    openTradeDialog();
 
     fetchBuyPrice();
     fetchSellPrice();
     fetchGemBalance();
-  }, [
-    closeTransactionDialog,
-    fetchBuyPrice,
-    fetchGemBalance,
-    fetchSellPrice,
-    openTradeDialog
-  ]);
+  }, [closeTransactionDialog, fetchBuyPrice, fetchGemBalance, fetchSellPrice]);
 
   const profilePicture = useMemo(
     () => LensUtils.getProfilePicture(profile),
@@ -186,15 +152,14 @@ function ProfileContent() {
               </div>
             </div>
             <div className="flex flex-col gap-2 items-center">
-              <button
-                className="py-2 px-3 bg-[#FF89A9] rounded-md text-[#2b2b2b] text-xs md:text-sm flex items-center justify-between"
-                onClick={openTradeDialog}
-              >
-                <FaGem />
-                <div className="pl-2 font-medium text-base">BUY GEMS</div>
-              </button>
+              <GemsPriceInfo
+                buyPrice={buyPrice}
+                sellPrice={sellPrice}
+                onBuyClick={onBuyClick}
+                onSellClick={onSellClick}
+              />
               <div className="flex items-center">
-                <p className="font-light ">You own {userGemBalance}</p>
+                <p className="font-medium ">You own {userGemBalance}</p>
                 {/* TODO: Replace with balance of gems owned */}
                 <div className="pl-1">
                   <FaGem />
@@ -229,20 +194,6 @@ function ProfileContent() {
             )}
           </div>
         </div>
-        <TradeDialog
-          userName={userInfo?.name ?? ""}
-          userImg={profilePicture}
-          userAddress={smartAccountAddress ?? ""}
-          gemSubjectAddress={profileSmartAccountAddress ?? ""}
-          isOpen={isTradeDialogOpen}
-          buyPriceEther={buyPriceEther}
-          sellPriceEther={sellPriceEther}
-          gemBalanceEther={userGemBalance}
-          onBuyPress={onBuyPress}
-          onSellPress={onSellPress}
-          openModal={openTradeDialog}
-          closeModal={closeTradeDialog}
-        />
 
         <TransactionDialog
           isOpen={isTransactionDialogOpen}
